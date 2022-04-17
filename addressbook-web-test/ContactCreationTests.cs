@@ -14,12 +14,13 @@ namespace addressbook_web_test
         [Test]
         public void ContactCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToNewContactPage();
-            FillContactForm(new ContactData("a", "a"));
-            OpenHomeLink();
-            Logout();
+            loginHelper.OpenHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigationHelper.GoToNewContactPage();
+            contactHelper.FillContactForm(new ContactData("a", "a"));
+            navigationHelper.GoToHomePage();
+            loginHelper.Logout();
         }
     }
+        
 }
