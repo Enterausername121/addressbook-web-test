@@ -12,7 +12,8 @@ namespace addressbook_web_test
 {
     public class NavigationHelper : HelperBase
     {
-        public NavigationHelper(IWebDriver driver) : base(driver)
+        private string baseURL;
+        public NavigationHelper(ApplicationManager applicationManager) : base(applicationManager)
         {
             
         }

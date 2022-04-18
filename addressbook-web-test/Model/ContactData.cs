@@ -15,11 +15,8 @@ namespace addressbook_web_test
         public ContactData(string firstname, string lastname)
         {
             this.firstname = firstname;
-            this.lastname = lastname;
-            
+            this.lastname = lastname;           
         }
-
-
 
         public string Firstname
         {
