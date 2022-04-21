@@ -8,7 +8,7 @@ namespace addressbook_web_test
     public class ContactCreationTests : BaseTest
     {
         
-        [Test]
+        [TestCase(TestName = "Создание контакта")]
         public void ContactCreationTest()
         {            
             applicationManager.Navigator.GoToNewContactPage();
@@ -16,6 +16,15 @@ namespace addressbook_web_test
             applicationManager.Navigator.GoToHomePage();
             applicationManager.Auth.Logout();
         }
+        [TestCase(TestName = "Создание пустого контакта")]
+        public void EmptyContactCreationTest()
+        {
+            applicationManager.Navigator.GoToNewContactPage();
+            applicationManager.Contacts.FillContactForm(new ContactData("", ""));
+            applicationManager.Navigator.GoToHomePage();
+            applicationManager.Auth.Logout();
+        }
+
     }
         
 }
