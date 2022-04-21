@@ -17,10 +17,20 @@ namespace addressbook_web_test
             
         }
 
+        public GroupHelper Modify(int v, GroupData newData)
+        {
+            applicationManager.Navigator.GoToGroupsPage();
+            SelectGroup(1);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            return this;
+        }               
+
         internal void Remove()
         {
             applicationManager.Navigator.GoToGroupsPage();
-            SelectGroup();
+            SelectGroup(1);
             RemoveGroup(1);
         }
 
@@ -61,10 +71,22 @@ namespace addressbook_web_test
             driver.FindElement(By.XPath("//div[@id='content']/form/input[" + index + "]")).Click();
             return this;
         }
-        public GroupHelper SelectGroup()
+        public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/span[4]/input")).Click();
             return this;
         }
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/form/input[3]")).Click();
+            return this;
+        } 
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/form/input[3]")).Click();
+            return this;
+        }
+
     }
 }
