@@ -48,7 +48,7 @@ namespace addressbook_web_test
 
         public ContactHelper UpdateContactDown()
         {
-            driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
+            driver.FindElement(By.XPath("//*[@id='content']/form[1]/input[1]")).Click();
             return this;
         }
 
