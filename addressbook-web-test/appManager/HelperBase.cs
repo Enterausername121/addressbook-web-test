@@ -22,5 +22,14 @@ namespace addressbook_web_test
         {
             this.baseURL = baseURL;
         }
+
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
     }    
 }
