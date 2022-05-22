@@ -19,7 +19,7 @@ namespace addressbook_web_test
         }
         public ContactHelper ContactModification(ContactData contact)
         {
-            applicationManager.Contacts.InitContactModification("1");
+            applicationManager.Contacts.InitContactModification();
             applicationManager.Contacts.FillContactForm(contact);
             applicationManager.Contacts.UpdateContactDown();
             return this;
@@ -55,9 +55,9 @@ namespace addressbook_web_test
             return this;
         }
 
-        public ContactHelper InitContactModification(string index)
+        public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//img[@title='Edit']")).Click();
+            driver.FindElement(By.XPath("//html/body/div[1]/div[4]/form[2]/table/tbody/tr[4]/td[8]/a/img")).Click();
             return this;
         }
 
