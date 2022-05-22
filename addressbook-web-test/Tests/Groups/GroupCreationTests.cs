@@ -3,9 +3,9 @@
 namespace addressbook_web_test
 {
     [TestFixture]
-    public class GroupCreationTests : BaseTest
-    {        
-        [Test]
+    public class GroupCreationTests : AuthBaseTest
+    {
+        [TestCase(TestName = "Добавление группы a a")]
         public void GroupCreationTest()
         {
 
@@ -13,11 +13,9 @@ namespace addressbook_web_test
             group.Header = "a";
             group.Footer = "a";
             applicationManager.Groups.Create(group);
-            applicationManager.Navigator.GoToGroupsPage(); 
-            applicationManager.Auth.Logout();
         }
 
-        [Test]
+        [TestCase(TestName = "Добавление группы")]
         public void EmptyGroupCreationTest()
         {
 
@@ -25,8 +23,6 @@ namespace addressbook_web_test
             group.Header = "";
             group.Footer = "";
             applicationManager.Groups.Create(group);
-            applicationManager.Navigator.GoToGroupsPage();
-            applicationManager.Auth.Logout();
         }
     }
 }

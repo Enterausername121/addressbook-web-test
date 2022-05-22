@@ -11,22 +11,16 @@ namespace addressbook_web_test
     public class BaseTest
     {
         
-        protected ApplicationManager applicationManager;
+        public ApplicationManager applicationManager;
         
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
-            applicationManager = new ApplicationManager();
-            applicationManager.Auth.OpenHomePage();
-            applicationManager.Auth.Login(new AccountData("admin", "secret"));
+            applicationManager = ApplicationManager.GetInstance();
         }
 
-        [TearDown]
-        public void TeardownTest()
-        {
-            applicationManager.Stop();
-        }                                         
+       
     }
 }
 

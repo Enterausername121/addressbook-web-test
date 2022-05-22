@@ -3,15 +3,12 @@
 namespace addressbook_web_test
 {
     [TestFixture]
-    public class ContactModifycationTests : BaseTest
+    public class ContactModifycationTests : AuthBaseTest
     {
-        [Test]
+        [TestCase(TestName = "Изменение контакта")]
         public void ContactModificationTest() 
         {
             applicationManager.Contacts.ContactModification(new ContactData("rae","rae"));
-            applicationManager.Navigator.GoToHomePage();
-            applicationManager.Auth.Logout();
-
         }
     }
 }

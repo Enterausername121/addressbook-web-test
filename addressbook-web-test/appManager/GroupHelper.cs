@@ -27,11 +27,12 @@ namespace addressbook_web_test
             return this;
         }               
 
-        internal void Remove()
+        public void Remove()
         {
             applicationManager.Navigator.GoToGroupsPage();
             SelectGroup(1);
             RemoveGroup(1);
+            
         }
 
         public GroupHelper Create(GroupData group) 
@@ -45,11 +46,23 @@ namespace addressbook_web_test
         }
         public GroupHelper FillGroupForm(GroupData group)
         {
+            
             Type(By.Name("group_name"), group.Name);
             Type(By.Name("group_header"), group.Header);
             Type(By.Name("group_footer"), group.Footer);
             return this;
         }
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+
+            }
+            
+        }
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -57,7 +70,7 @@ namespace addressbook_web_test
         }
         public GroupHelper InitGroupCreation()
         {
-            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.XPath("//*[@id='content']/form/input[1]")).Click();
             return this;
         }
         public GroupHelper RemoveGroup(int index)

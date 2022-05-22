@@ -3,7 +3,7 @@
 namespace addressbook_web_test
 {
     [TestFixture]
-    public class GroupModificationTests : BaseTest
+    public class GroupModificationTests : AuthBaseTest
     {
         [Test]
         public void GroupModificationTest()
@@ -12,20 +12,15 @@ namespace addressbook_web_test
             newData.Header = "aer";
             newData.Footer = "aer";
             applicationManager.Groups.Modify(1, newData);
-            applicationManager.Navigator.GoToGroupsPage();
-            applicationManager.Auth.Logout();
         }
 
         [Test]
         public void GroupModificationTestNULL()
         {
             GroupData newData = new GroupData("aer");
-            newData.Header = null;
-            newData.Footer = null;
+            newData.Header = "null";
+            newData.Footer = "null";
             applicationManager.Groups.Modify(1, newData);
-            applicationManager.Navigator.GoToGroupsPage();
-            applicationManager.Auth.Logout();
         }
-
     }
 }
