@@ -11,15 +11,15 @@ namespace addressbook_web_test
         [TestCase(TestName = "Создание контакта")]
         public void ContactCreationTest()
         {            
-            applicationManager.Navigator.GoToNewContactPage();
-            applicationManager.Contacts.FillContactForm(new ContactData("a", "a"));
+            
+            applicationManager.Contacts.ContactCreate(new ContactData("a", "a"));
 
         }
         [TestCase(TestName = "Создание пустого контакта")]
         public void EmptyContactCreationTest()
         {
-            applicationManager.Navigator.GoToNewContactPage();
-            applicationManager.Contacts.FillContactForm(new ContactData("", ""));
+            
+            applicationManager.Contacts.ContactCreate(new ContactData("", ""));
          
         }
 

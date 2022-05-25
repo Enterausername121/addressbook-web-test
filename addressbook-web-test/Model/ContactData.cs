@@ -8,10 +8,10 @@ namespace addressbook_web_test
 {
     public class ContactData
     {
-        private string firstname;
-        
-        private string lastname;
-        
+        public string firstname;
+        public string lastname;
+                
+
         public ContactData(string firstname, string lastname)
         {
             this.firstname = firstname;
@@ -30,7 +30,11 @@ namespace addressbook_web_test
             set { this.lastname = value; }
         }
 
-        
+        public ContactData(string firstname)
+        {
+            this.firstname = firstname;
+        }
+
     }
 }
 

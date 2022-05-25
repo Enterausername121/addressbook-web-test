@@ -21,11 +21,11 @@ namespace addressbook_web_test
         public void GoToHomePage()
         {
             if (driver.Url == baseURL + "index.php"
-                && IsElementPresent(By.Name("new")))
+                && IsElementPresent(By.XPath("Address")))
             {
                 return;
             }
-            driver.FindElement(By.LinkText("home")).Click();
+            driver.FindElement(By.XPath("//*[@id='logo']")).Click();
         }
 
         public void GoToGroupsPage()
@@ -40,7 +40,7 @@ namespace addressbook_web_test
         public void GoToNewContactPage()
         {
             if (driver.Url == baseURL + "edit.php"
-                && IsElementPresent(By.Name("new")))
+                && IsElementPresent(By.XPath("//*[@id='content']/form/input[7]")))
             {
                 return;
             }

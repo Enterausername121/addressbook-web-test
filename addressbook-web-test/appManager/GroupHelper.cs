@@ -65,7 +65,7 @@ namespace addressbook_web_test
 
         public GroupHelper SubmitGroupCreation()
         {
-            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.XPath("//*[@id='content']/form/input[2]")).Click();
             return this;
         }
         public GroupHelper InitGroupCreation()
