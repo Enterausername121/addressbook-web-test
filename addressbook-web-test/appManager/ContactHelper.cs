@@ -21,28 +21,31 @@ namespace addressbook_web_test
 
         public ContactHelper ContactCreate(ContactData contact)
         {
-            applicationManager.Navigator.GoToNewContactPage();
-            applicationManager.Contacts.FillContactForm(contact);
-            applicationManager.Contacts.SubmitCreateContact();
+            GoToNewContactPage();
+            FillContactForm(contact);
+            SubmitCreateContact();
+            //applicationManager.Navigator.GoToHomePage();
             return this;
         }
 
         public ContactHelper ContactModification(int v, ContactData contact)
         {
             //applicationManager.Navigator.GoToHomePage();
-            applicationManager.Contacts.InitContactModification("1");
-            applicationManager.Contacts.FillContactForm(contact);
-            applicationManager.Contacts.UpdateContactDown();
+            InitContactModification("1");
+            FillContactForm(contact);
+            UpdateContactDown();
+            //applicationManager.Navigator.GoToHomePage();
             return this;
         }
 
         public void Delete() 
         {
             //applicationManager.Navigator.GoToHomePage();
-            applicationManager.Contacts.SelectContact("1");
-            applicationManager.Contacts.DeleteContact();
-            applicationManager.Contacts.CloseAlertWindow();
-            
+            SelectContact("1");
+            DeleteContact();
+            CloseAlertWindow();
+            //applicationManager.Navigator.GoToHomePage();
+
         }
 
         
@@ -54,6 +57,16 @@ namespace addressbook_web_test
             Type(By.Name("firstname"), contact.Firstname);
             Type(By.Name("lastname"), contact.Lastname);                      
             return this;
+        }
+
+        public void GoToNewContactPage()
+        {
+            if (driver.Url == baseURL + "edit.php"
+                && IsElementPresent(By.XPath("//*[@id='content']/form/input[7]")))
+            {
+                return;
+            }
+            driver.FindElement(By.LinkText("add new")).Click();
         }
 
         public void Type(By locator, string text)
@@ -81,13 +94,13 @@ namespace addressbook_web_test
 
         public ContactHelper SelectContact(string index)
         {
-            driver.FindElement(By.XPath("//tr[@name=\"entry\"][" + index + "]//input[@type='checkbox']")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//input[@type='checkbox']")).Click();
             return this;
         }
 
         public ContactHelper InitContactModification(string index)
         {
-            driver.FindElement(By.XPath("//tr[@name=\"entry\"][" + index + "]//img[@title='Edit']")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//img[@title='Edit']")).Click();
             return this;
         }
 

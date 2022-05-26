@@ -21,7 +21,7 @@ namespace addressbook_web_test
         public void GoToHomePage()
         {
             if (driver.Url == baseURL + "index.php"
-                && IsElementPresent(By.XPath("Address")))
+                && IsElementPresent(By.XPath("//*[@id='content']/form[2]/div[1]/input")))
             {
                 return;
             }
@@ -37,14 +37,6 @@ namespace addressbook_web_test
             }
             driver.FindElement(By.LinkText("groups")).Click();
         }
-        public void GoToNewContactPage()
-        {
-            if (driver.Url == baseURL + "edit.php"
-                && IsElementPresent(By.XPath("//*[@id='content']/form/input[7]")))
-            {
-                return;
-            }
-            driver.FindElement(By.LinkText("add new")).Click();
-        }
+        
     }
 }

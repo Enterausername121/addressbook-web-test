@@ -10,7 +10,7 @@ namespace addressbook_web_test
     {
         protected ApplicationManager applicationManager;
         public IWebDriver driver;
-        private string baseURL;
+        public string baseURL;
 
         public HelperBase(ApplicationManager applicationManager)
         {
