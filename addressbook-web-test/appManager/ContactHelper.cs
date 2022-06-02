@@ -30,7 +30,7 @@ namespace addressbook_web_test
 
         public ContactHelper ContactModification(int v, ContactData contact)
         {
-            //applicationManager.Navigator.GoToHomePage();
+            applicationManager.Navigator.GoToHomePage();
             InitContactModification("1");
             FillContactForm(contact);
             UpdateContactDown();
@@ -40,7 +40,7 @@ namespace addressbook_web_test
 
         public void Delete() 
         {
-            //applicationManager.Navigator.GoToHomePage();
+            applicationManager.Navigator.GoToHomePage();
             SelectContact("1");
             DeleteContact();
             CloseAlertWindow();
