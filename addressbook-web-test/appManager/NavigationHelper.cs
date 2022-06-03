@@ -17,16 +17,19 @@ namespace addressbook_web_test
         {
             
         }
-       
+
+
         public void GoToHomePage()
         {
             if (driver.Url == baseURL + "index.php"
-                && IsElementPresent(By.XPath("//*[@id='content']/form[2]/div[1]/input")))
+                && IsElementPresent(By.XPath("/html/body/div/div[4]/label/strong")))
             {
                 return;
             }
             driver.FindElement(By.XPath("//*[@id='logo']")).Click();
         }
+
+
 
         public void GoToGroupsPage()
         {

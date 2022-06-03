@@ -20,13 +20,15 @@ namespace addressbook_web_test
         public GroupHelper Modify(int v, GroupData newData)
         {
             applicationManager.Navigator.GoToGroupsPage();
+            
             SelectGroup(1);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
             return this;
-        }               
+        }
 
+        
         public void Remove()
         {
             applicationManager.Navigator.GoToGroupsPage();

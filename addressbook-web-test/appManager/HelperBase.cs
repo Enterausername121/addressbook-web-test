@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 
 namespace addressbook_web_test
@@ -18,16 +19,18 @@ namespace addressbook_web_test
             driver = applicationManager.Driver; 
         }
 
-        public HelperBase(IWebDriver driver, string baseURL) 
-        {
-            this.baseURL = baseURL;
-        }
+        //public HelperBase(IWebDriver driver, string baseURL) 
+        //{
+            //this.baseURL = baseURL;
+        //}
 
         public void Type(By locator, string text)
         {
             if (text != null)
             {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
                 driver.FindElement(locator).Clear();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
                 driver.FindElement(locator).SendKeys(text);
             }
         }

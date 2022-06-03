@@ -24,27 +24,32 @@ namespace addressbook_web_test
             GoToNewContactPage();
             FillContactForm(contact);
             SubmitCreateContact();
-            //applicationManager.Navigator.GoToHomePage();
+            
             return this;
         }
 
         public ContactHelper ContactModification(int v, ContactData contact)
         {
+
+
             applicationManager.Navigator.GoToHomePage();
+
             InitContactModification("1");
             FillContactForm(contact);
             UpdateContactDown();
-            //applicationManager.Navigator.GoToHomePage();
+            LinkHomePage();
             return this;
         }
 
         public void Delete() 
         {
+
             applicationManager.Navigator.GoToHomePage();
+
             SelectContact("1");
             DeleteContact();
             CloseAlertWindow();
-            //applicationManager.Navigator.GoToHomePage();
+            
 
         }
 
@@ -88,19 +93,19 @@ namespace addressbook_web_test
 
         public ContactHelper UpdateContactDown()
         {
-            driver.FindElement(By.XPath("//*[@id='content']/form[1]/input[1]")).Click();
+            driver.FindElement(By.XPath("/html/body/div/div[4]/form[1]/input[1]")).Click();
             return this;
         }
 
         public ContactHelper SelectContact(string index)
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//input[@type='checkbox']")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][' + index + ']//input[@type='checkbox']")).Click();
             return this;
         }
 
         public ContactHelper InitContactModification(string index)
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//img[@title='Edit']")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
 
@@ -115,5 +120,13 @@ namespace addressbook_web_test
             driver.SwitchTo().Alert().Accept();
             return this;
         }
+
+        public ContactHelper LinkHomePage()
+        {
+            driver.FindElement(By.XPath("//*[@id='content']/div/i/a")).Click();
+            return this;
+        }
+
+        
     }
 }
