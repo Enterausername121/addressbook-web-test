@@ -33,13 +33,11 @@ namespace addressbook_web_test
         {
             applicationManager.Navigator.GoToGroupsPage();
             SelectGroup(1);
-            RemoveGroup(1);
-            
+            RemoveGroup(1);            
         }
 
         public GroupHelper Create(GroupData group) 
         {
-
             applicationManager.Navigator.GoToGroupsPage();
             InitGroupCreation();
             FillGroupForm(group);
@@ -48,7 +46,6 @@ namespace addressbook_web_test
         }
         public GroupHelper FillGroupForm(GroupData group)
         {
-            
             Type(By.Name("group_name"), group.Name);
             Type(By.Name("group_header"), group.Header);
             Type(By.Name("group_footer"), group.Footer);
@@ -95,6 +92,20 @@ namespace addressbook_web_test
         {
             driver.FindElement(By.XPath("//*[@id='content']/form/input[3]")).Click();
             return this;
+        }
+
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            applicationManager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                
+                groups.Add(new GroupData(element.Text));
+
+            }
+            return groups;
         }
 
     }

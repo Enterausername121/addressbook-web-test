@@ -34,6 +34,7 @@ namespace addressbook_web_test
                 driver.FindElement(locator).SendKeys(text);
             }
         }
+
         public bool IsElementPresent(By by)
         {
             try

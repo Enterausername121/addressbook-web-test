@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace addressbook_web_test
 {
@@ -12,6 +13,7 @@ namespace addressbook_web_test
             newData.Header = "aer";
             newData.Footer = "aer";
             applicationManager.Groups.Modify(1, newData);
+
         }
 
         [Test]

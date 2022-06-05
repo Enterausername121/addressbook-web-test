@@ -18,7 +18,6 @@ namespace addressbook_web_test
             
         }
 
-
         public void GoToHomePage()
         {
             if (driver.Url == baseURL + "index.php"
@@ -28,7 +27,6 @@ namespace addressbook_web_test
             }
             driver.FindElement(By.XPath("//*[@id='logo']")).Click();
         }
-
 
 
         public void GoToGroupsPage()

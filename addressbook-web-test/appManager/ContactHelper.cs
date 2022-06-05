@@ -41,24 +41,21 @@ namespace addressbook_web_test
             return this;
         }
 
+        
+
         public void Delete() 
         {
-
             applicationManager.Navigator.GoToHomePage();
-
             SelectContact("1");
             DeleteContact();
-            CloseAlertWindow();
-            
-
+            CloseAlertWindow();           
         }
 
         
 
 
         public ContactHelper FillContactForm(ContactData contact)
-        {
-            
+        {            
             Type(By.Name("firstname"), contact.Firstname);
             Type(By.Name("lastname"), contact.Lastname);                      
             return this;
@@ -80,9 +77,7 @@ namespace addressbook_web_test
             {
                 driver.FindElement(locator).Clear();
                 driver.FindElement(locator).SendKeys(text);
-
             }
-
         }
 
         public ContactHelper SubmitCreateContact()
@@ -127,6 +122,18 @@ namespace addressbook_web_test
             return this;
         }
 
-        
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            applicationManager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//*[@name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+
+                contacts.Add(new ContactData(element.Text));
+
+            }
+            return contacts;
+        }
     }
 }
