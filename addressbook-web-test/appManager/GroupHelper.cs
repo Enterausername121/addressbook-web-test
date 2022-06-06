@@ -32,8 +32,8 @@ namespace addressbook_web_test
         public void Remove()
         {
             applicationManager.Navigator.GoToGroupsPage();
-            SelectGroup(1);
-            RemoveGroup(1);            
+            SelectGroup(0);
+            RemoveGroup();            
         }
 
         public GroupHelper Create(GroupData group) 
@@ -72,14 +72,14 @@ namespace addressbook_web_test
             driver.FindElement(By.XPath("//*[@id='content']/form/input[1]")).Click();
             return this;
         }
-        public GroupHelper RemoveGroup(int index)
+        public GroupHelper RemoveGroup()
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/input[" + index + "]")).Click();
+            driver.FindElement(By.Name("delete")).Click();
             return this;
         }
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[4]/input")).Click();
+            driver.FindElement(By.XPath("//*[@id='content']/form/span['+ (index+1) +']/input")).Click();
             return this;
         }
         public GroupHelper SubmitGroupModification()

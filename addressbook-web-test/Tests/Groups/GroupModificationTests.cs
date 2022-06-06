@@ -12,7 +12,7 @@ namespace addressbook_web_test
             GroupData newData = new GroupData("aer");
             newData.Header = "aer";
             newData.Footer = "aer";
-            applicationManager.Groups.Modify(1, newData);
+            applicationManager.Groups.Modify(0, newData);
 
         }
 
@@ -22,7 +22,7 @@ namespace addressbook_web_test
             GroupData newData = new GroupData("aer");
             newData.Header = "null";
             newData.Footer = "null";
-            applicationManager.Groups.Modify(1, newData);
+            applicationManager.Groups.Modify(0, newData);
         }
     }
 }
