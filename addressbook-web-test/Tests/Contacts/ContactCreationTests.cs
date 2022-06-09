@@ -13,25 +13,45 @@ namespace addressbook_web_test
         public void ContactCreationTest()
         {
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
-            applicationManager.Contacts.ContactCreate(new ContactData("a", "a"));
+            ContactData contact = new ContactData("");
+            contact.Firstname = "a";
+            contact.Lastname = "a";
+            applicationManager.Contacts.ContactCreate(contact);
             List<ContactData> newContact = applicationManager.Contacts.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
         [TestCase(TestName = "Создание пустого контакта")]
         public void EmptyContactCreationTest()
         {
+            
+            ContactData contact = new ContactData("");
+            contact.Firstname = "";
+            contact.Lastname = "";
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
-            applicationManager.Contacts.ContactCreate(new ContactData("", ""));
+            applicationManager.Contacts.ContactCreate(contact);
             List<ContactData> newContact = applicationManager.Contacts.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
+
         [TestCase(TestName = "Некорректный символ в имени контакта")]
         public void BadNameContactCreationTest()
         {
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
-            applicationManager.Contacts.ContactCreate(new ContactData("a'a", ""));
+            ContactData contact = new ContactData("a'a");
+            contact.Firstname = "a'a";
+            contact.Lastname = "";
+            applicationManager.Contacts.ContactCreate(contact);
             List <ContactData> newContact = applicationManager.Contacts.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
 
 

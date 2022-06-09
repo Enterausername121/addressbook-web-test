@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace addressbook_web_test
 {
-    public class GroupData : IEquatable<GroupData>
+    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
         public string name;
         public string header = "";
         public string footer = "";
+        
 
         public bool Equals(GroupData other)
         {
@@ -26,11 +27,28 @@ namespace addressbook_web_test
 
         }
 
-        public int GetHashCode()
+        public override int GetHashCode()
         {
             return Name.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "name=" + Name;
+        }
+
+        public int CompareTo(GroupData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+
+            return name.CompareTo(other.Name);
+
+        }
+
+       
 
         public GroupData(string name, string header, string footer)
         {

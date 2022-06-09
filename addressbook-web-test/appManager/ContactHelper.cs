@@ -94,7 +94,7 @@ namespace addressbook_web_test
 
         public ContactHelper SelectContact(string index)
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][' + index + ']//input[@type='checkbox']")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][' + (index+1) + ']//input[@type='checkbox']")).Click();
             return this;
         }
 

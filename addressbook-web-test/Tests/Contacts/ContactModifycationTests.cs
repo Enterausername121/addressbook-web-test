@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace addressbook_web_test
 {
@@ -11,7 +12,13 @@ namespace addressbook_web_test
             ContactData newData = new ContactData("rae");
             newData.Firstname = "rae";
             newData.Lastname = "rae";
-            applicationManager.Contacts.ContactModification(1, newData);
+            List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
+            applicationManager.Contacts.ContactModification(0, newData);
+            List<ContactData> newContact = applicationManager.Contacts.GetContactList();
+            oldContact[0].Lastname = newData.Lastname;
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
 
         [TestCase(TestName = "Изменение контакта пустые значения")]
@@ -20,7 +27,13 @@ namespace addressbook_web_test
             ContactData newData = new ContactData("rae");
             newData.Firstname = "null";
             newData.Lastname = "null";
-            applicationManager.Contacts.ContactModification(1, newData);
+            List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
+            applicationManager.Contacts.ContactModification(0, newData);
+            List<ContactData> newContact = applicationManager.Contacts.GetContactList();
+            oldContact[0].Firstname = newData.Firstname;
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
     }
 }
