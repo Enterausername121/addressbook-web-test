@@ -15,7 +15,7 @@ namespace addressbook_web_test
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
             applicationManager.Contacts.ContactModification(0, newData);
             List<ContactData> newContact = applicationManager.Contacts.GetContactList();
-            oldContact[0].Lastname = newData.Lastname;
+            oldContact[0] = newData;
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);
@@ -24,13 +24,13 @@ namespace addressbook_web_test
         [TestCase(TestName = "Изменение контакта пустые значения")]
         public void ContactModificationTestNULL()
         {
-            ContactData newData = new ContactData("rae");
+            ContactData newData = new ContactData("");
             newData.Firstname = "null";
             newData.Lastname = "null";
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
             applicationManager.Contacts.ContactModification(0, newData);
             List<ContactData> newContact = applicationManager.Contacts.GetContactList();
-            oldContact[0].Firstname = newData.Firstname;
+            oldContact[0] = newData;
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);

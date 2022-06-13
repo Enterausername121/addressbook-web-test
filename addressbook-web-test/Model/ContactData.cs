@@ -9,7 +9,8 @@ namespace addressbook_web_test
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         public string firstname;
-        public string lastname;
+        public string lastname = "";
+        
 
         public bool Equals(ContactData other)
         {
@@ -21,24 +22,21 @@ namespace addressbook_web_test
             {
                 return true;
             }
-            if (Lastname == other.Lastname)
-            {
-                return Firstname == other.Firstname;
-            }
-            else
-            {
-                return false;
-            }
+            return Firstname == other.Firstname && Lastname == other.Lastname;
+
+            
+
+            
         }
 
         public override int GetHashCode()
         {
-            return Lastname.GetHashCode() + Firstname.GetHashCode();
+            return Firstname.GetHashCode()  + Lastname.GetHashCode();
         }
 
         public override string ToString()
         {
-            return "lastname=" + Lastname + "/n" + "firstname=" + Firstname;
+            return "firstname=" + Firstname + "/n" + "lastname=" + Lastname;
         }
         public int CompareTo(ContactData other)
         {
@@ -46,26 +44,20 @@ namespace addressbook_web_test
             {
                 return 1;
             }
+            return firstname.CompareTo(other.Firstname) != 0 ?
+                firstname.CompareTo(other.Firstname) : lastname.CompareTo(other.Lastname);
 
-            if (Firstname.CompareTo(other.Firstname) == 0)
-            {
-                return Lastname.CompareTo(other.Lastname);
-            }
-
-            else
-            {
-                return Lastname.CompareTo(other.Lastname);
-            }
+            
             
         }
 
        
 
-        public ContactData(string firstname, string lastname)
-        {
-            this.firstname = firstname;
-            this.lastname = lastname;           
-        }
+        //public ContactData(string firstname, string lastname)
+        //{
+          //  this.firstname = firstname;
+            //this.lastname = lastname;           
+        //}
 
         public string Firstname
         {
@@ -86,6 +78,8 @@ namespace addressbook_web_test
             this.firstname = firstname;
         
         }
+
+        
 
     }
 }

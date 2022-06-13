@@ -13,7 +13,7 @@ namespace addressbook_web_test
         public void ContactCreationTest()
         {
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
-            ContactData contact = new ContactData("");
+            ContactData contact = new ContactData("123");
             contact.Firstname = "a";
             contact.Lastname = "a";
             applicationManager.Contacts.ContactCreate(contact);
@@ -27,13 +27,13 @@ namespace addressbook_web_test
         public void EmptyContactCreationTest()
         {
             
-            ContactData contact = new ContactData("");
-            contact.Firstname = "";
-            contact.Lastname = "";
+            ContactData contacts = new ContactData("");
+            contacts.Firstname = "";
+            contacts.Lastname = "";
             List<ContactData> oldContact = applicationManager.Contacts.GetContactList();
-            applicationManager.Contacts.ContactCreate(contact);
+            applicationManager.Contacts.ContactCreate(contacts);
             List<ContactData> newContact = applicationManager.Contacts.GetContactList();
-            oldContact.Add(contact);
+            oldContact.Add(contacts);
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);
