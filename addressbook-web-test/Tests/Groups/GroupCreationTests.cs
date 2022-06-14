@@ -16,11 +16,15 @@ namespace addressbook_web_test
             group.Header = "a";
             group.Footer = "a";
             applicationManager.Groups.Create(group);
+            
+            
             List<GroupData> newGroup = applicationManager.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, applicationManager.Groups.GetGroupCount());
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroup.Sort();
             Assert.AreEqual(oldGroups, newGroup);
+            
         }
 
         [TestCase(TestName = "Добавление группы")]
@@ -31,7 +35,9 @@ namespace addressbook_web_test
             group.Header = "";
             group.Footer = "";
             applicationManager.Groups.Create(group);
+            
             List<GroupData> newGroup = applicationManager.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, applicationManager.Groups.GetGroupCount());
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroup.Sort();
@@ -46,11 +52,14 @@ namespace addressbook_web_test
             group.Header = "";
             group.Footer = "";
             applicationManager.Groups.Create(group);
+            
             List<GroupData> newGroup = applicationManager.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count, applicationManager.Groups.GetGroupCount());
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroup.Sort();
             Assert.AreEqual(oldGroups, newGroup);
+            
         }
     }
 }

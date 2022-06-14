@@ -83,12 +83,14 @@ namespace addressbook_web_test
         public ContactHelper SubmitCreateContact()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form/input[21]")).Click();
+            contactCash = null;
             return this;
         }
 
         public ContactHelper UpdateContactDown()
         {
             driver.FindElement(By.XPath("/html/body/div/div[4]/form[1]/input[1]")).Click();
+            contactCash = null;
             return this;
         }
 
@@ -107,6 +109,7 @@ namespace addressbook_web_test
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form[2]/div[2]/input")).Click();
+            contactCash = null;
             return this;
         }
 
@@ -122,18 +125,25 @@ namespace addressbook_web_test
             return this;
         }
 
+        private List<ContactData> contactCash = null;
+
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            applicationManager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//*[@name='entry']"));
-            foreach (IWebElement element in elements)
+            if (contactCash == null)
             {
+                contactCash = new List<ContactData>();
+                applicationManager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//*[@name='entry']"));
+                foreach (IWebElement element in elements)
+                {
 
-                contacts.Add(new ContactData(element.Text));
+                    contactCash.Add(new ContactData(element.Text));
 
+                }
             }
-            return contacts;
+            List<ContactData> contacts = new List<ContactData>();
+           
+            return new List<ContactData>(contactCash);
         }
     }
 }

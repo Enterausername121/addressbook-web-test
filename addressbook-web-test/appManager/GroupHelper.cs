@@ -11,16 +11,16 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_web_test
 {
     public class GroupHelper : HelperBase
-    {        
+    {
         public GroupHelper(ApplicationManager applicationManager) : base(applicationManager)
         {
-            
+
         }
 
         public GroupHelper Modify(int v, GroupData newData)
         {
             applicationManager.Navigator.GoToGroupsPage();
-            
+
             SelectGroup(1);
             InitGroupModification();
             FillGroupForm(newData);
@@ -28,15 +28,15 @@ namespace addressbook_web_test
             return this;
         }
 
-        
+
         public void Remove()
         {
             applicationManager.Navigator.GoToGroupsPage();
             SelectGroup(0);
-            RemoveGroup();            
+            RemoveGroup();
         }
 
-        public GroupHelper Create(GroupData group) 
+        public GroupHelper Create(GroupData group)
         {
             applicationManager.Navigator.GoToGroupsPage();
             InitGroupCreation();
@@ -59,7 +59,7 @@ namespace addressbook_web_test
                 driver.FindElement(locator).SendKeys(text);
 
             }
-            
+
         }
 
         public GroupHelper SubmitGroupCreation()
@@ -70,11 +70,19 @@ namespace addressbook_web_test
         public GroupHelper InitGroupCreation()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form/input[1]")).Click();
+            groupCash = null;
             return this;
         }
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
+            groupCash = null;
             return this;
         }
         public GroupHelper SelectGroup(int index)
@@ -85,8 +93,9 @@ namespace addressbook_web_test
         public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.XPath("//*[@id='content']/form/input[3]")).Click();
+            groupCash = null;
             return this;
-        } 
+        }
 
         public GroupHelper InitGroupModification()
         {
@@ -94,19 +103,27 @@ namespace addressbook_web_test
             return this;
         }
 
+        private List<GroupData>? groupCash = null;
+
+
         public List<GroupData> GetGroupList()
         {
-            List<GroupData> groups = new List<GroupData>();
-            applicationManager.Navigator.GoToGroupsPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebElement element in elements)
+            if (groupCash == null)
             {
-                
-                groups.Add(new GroupData(element.Text));
-
+                groupCash = new List<GroupData>();
+                applicationManager.Navigator.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in elements)
+                {
+                    groupCash.Add(new GroupData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
+                }
+                //List<GroupData> groups = new List<GroupData>();
+                return new List<GroupData>(groupCash);
             }
-            return groups;
+            return new List<GroupData>(groupCash);
         }
-
     }
 }

@@ -15,6 +15,7 @@ namespace addressbook_web_test
             List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
             applicationManager.Groups.Modify(0, newData);
             List<GroupData> newGroup = applicationManager.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count, applicationManager.Groups.GetGroupCount());
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroup.Sort();
@@ -31,6 +32,7 @@ namespace addressbook_web_test
             List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
             applicationManager.Groups.Modify(0, newData);
             List<GroupData> newGroup = applicationManager.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count, applicationManager.Groups.GetGroupCount());
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroup.Sort();

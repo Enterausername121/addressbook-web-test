@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 namespace addressbook_web_test
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
-    {
-        public string firstname;
-        public string lastname = "";
-        
+    {   
 
         public bool Equals(ContactData other)
         {
@@ -23,10 +20,6 @@ namespace addressbook_web_test
                 return true;
             }
             return Firstname == other.Firstname && Lastname == other.Lastname;
-
-            
-
-            
         }
 
         public override int GetHashCode()
@@ -44,11 +37,8 @@ namespace addressbook_web_test
             {
                 return 1;
             }
-            return firstname.CompareTo(other.Firstname) != 0 ?
-                firstname.CompareTo(other.Firstname) : lastname.CompareTo(other.Lastname);
-
-            
-            
+            return Firstname.CompareTo(other.Firstname) != 0 ?
+                Firstname.CompareTo(other.Firstname) : Lastname.CompareTo(other.Lastname);
         }
 
        
@@ -59,28 +49,15 @@ namespace addressbook_web_test
             //this.lastname = lastname;           
         //}
 
-        public string Firstname
-        {
-            get { return this.firstname; }
-            set { this.firstname = value; }
-        }
-
-        public string Lastname
-        {
-            get { return this.lastname; }
-            set { this.lastname = value; }
-        }
-
-        
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string id { get; set; }
 
         public ContactData(string firstname)
         {
-            this.firstname = firstname;
+            Firstname = firstname;
         
         }
-
-        
-
     }
 }
 
